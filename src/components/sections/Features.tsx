@@ -4,52 +4,34 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { features } from "@/content/product";
-import { TiltCard } from "@/components/ui/TiltCard";
 import { Stamp } from "@/components/ui/Stamp";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const icons = [
-  <svg key="anc" viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
-    <path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.4" />
-  </svg>,
-  <svg key="ti" viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
-    <path d="M4 10v4a8 8 0 0 0 16 0v-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    <path d="M4 12H2M22 12h-2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-  </svg>,
-  <svg key="bat" viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden>
-    <rect x="2" y="7" width="18" height="10" rx="2" stroke="currentColor" strokeWidth="1.4" />
-    <path d="M20 10v4h1.5a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5H20Z" fill="currentColor" />
-    <path d="M5 10h8v4H5z" fill="currentColor" opacity="0.85" />
-  </svg>,
-];
-
+/** Editorial feature list — no cards. */
 export function Features() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-    const cards = section.querySelectorAll("[data-feature-card]");
+    const rows = section.querySelectorAll("[data-feature-row]");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ctx = gsap.context(() => {
       if (reduced) {
-        gsap.set(cards, { opacity: 1, clearProps: "transform" });
+        gsap.set(rows, { opacity: 1, clearProps: "transform" });
         return;
       }
       gsap.fromTo(
-        cards,
-        { opacity: 0, y: 72, rotateX: 14, transformPerspective: 1100 },
+        rows,
+        { opacity: 0, y: 36 },
         {
           opacity: 1,
           y: 0,
-          rotateX: 0,
-          duration: 1.4,
-          stagger: 0.16,
-          ease: "expo.out",
-          scrollTrigger: { trigger: section, start: "top 70%" },
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: { trigger: section, start: "top 72%" },
         },
       );
     }, section);
@@ -62,7 +44,7 @@ export function Features() {
       ref={sectionRef}
       className="relative overflow-hidden bg-transparent px-5 py-20 md:px-12 md:py-32 lg:px-20"
     >
-      <div className="relative z-[1] mx-auto mb-10 flex max-w-6xl items-end justify-between gap-8 md:mb-16">
+      <div className="relative z-[1] mx-auto mb-12 flex max-w-6xl items-end justify-between gap-8 md:mb-16">
         <div className="min-w-0 flex-1">
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--accent)] md:mb-4">
             The instrument
@@ -78,60 +60,43 @@ export function Features() {
         <Stamp className="hidden h-28 w-28 shrink-0 opacity-80 md:block lg:h-36 lg:w-36" />
       </div>
 
-      <div
-        className="relative z-[1] mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-8"
-        style={{ perspective: "1400px" }}
-      >
+      <ul className="relative z-[1] mx-auto max-w-6xl border-t border-white/15">
         {features.map((feature, i) => (
-          <TiltCard
+          <li
             key={feature.title}
-            data-feature-card
-            maxTilt={9}
-            className="aura-luxe-card group relative flex h-full min-h-0 flex-col p-7 md:min-h-[22rem] md:p-9"
+            data-feature-row
+            className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 border-b border-white/15 py-8 md:grid-cols-[4.5rem_minmax(0,1fr)_7rem] md:items-baseline md:gap-x-10 md:py-10"
           >
-            <div className="aura-luxe-card__sheen" aria-hidden />
-            <div className="relative z-[1] mb-auto flex items-start justify-between gap-4">
-              <span className="font-mono text-[11px] tracking-[0.28em] text-white/35">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="font-mono text-[11px] tracking-[0.2em] text-[#6EB6FF]">
-                {feature.mono}
-              </span>
+            <span className="font-mono text-sm tracking-[0.2em] text-white/35 md:text-base">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] text-white md:text-2xl">
+                {feature.title}
+              </h3>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#A1A1A6] md:mt-3 md:text-base">
+                {feature.description}
+              </p>
             </div>
-
-            <div className="relative z-[1] mt-10 mb-8 flex h-14 w-14 items-center justify-center rounded-full border border-white/12 bg-gradient-to-b from-white/10 to-transparent text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
-              {icons[i]}
-            </div>
-
-            <h3 className="relative z-[1] text-[1.35rem] font-semibold tracking-[-0.02em] text-white md:text-xl">
-              {feature.title}
-            </h3>
-            <p className="relative z-[1] mt-3 text-sm leading-relaxed text-[#9AA0AB] md:text-[0.95rem]">
-              {feature.description}
-            </p>
-
-            <div
-              className="relative z-[1] mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/25 to-transparent"
-              aria-hidden
-            />
-            <p className="relative z-[1] mt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-white/30 transition-colors group-hover:text-white/50">
-              Aura Pro · Spec
-            </p>
-          </TiltCard>
+            <span className="col-start-2 font-mono text-[11px] tracking-[0.18em] text-[#007AFF] md:col-start-auto md:justify-self-end md:text-xs">
+              {feature.mono}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      <div className="relative z-[1] mx-auto mt-10 flex max-w-6xl flex-col items-stretch gap-4 border border-white/10 bg-black/25 px-5 py-5 backdrop-blur-md [border-radius:1.5rem] md:mt-14 md:flex-row md:items-center md:justify-between md:px-7 md:[border-radius:999px_1.25rem]">
-        <p className="text-center text-sm text-[#A1A1A6] md:text-start md:text-base">
+      <div className="relative z-[1] mx-auto mt-12 flex max-w-6xl flex-col gap-4 border-t border-white/15 pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
+        <p className="text-sm text-[#A1A1A6] md:text-base">
           <span className="font-medium text-white">$349</span>
           <span className="mx-2 text-white/25">·</span>
           Free worldwide shipping · Guest checkout
         </p>
         <a
           href="#preorder"
-          className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] md:py-2.5"
+          className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-white underline-offset-4 transition-colors hover:text-[color:var(--accent)] hover:underline"
         >
           Pre-order Now
+          <span aria-hidden>→</span>
         </a>
       </div>
     </section>

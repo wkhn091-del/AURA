@@ -10,7 +10,7 @@ type Props = {
   stillAlt: string;
 };
 
-/** Desktop: video → landscape still. Mobile: portrait hero still fills the viewport. */
+/** Video plays once → crossfade to still (portrait still on mobile). */
 export function HeroMedia({
   videoSrc,
   stillSrc,
@@ -44,15 +44,13 @@ export function HeroMedia({
     const finish = () => {
       if (doneRef.current) return;
       doneRef.current = true;
-      gsap.to(still, { opacity: 1, duration: 0.45, ease: "power2.out" });
-      gsap.to(video, { opacity: 0, duration: 0.45, ease: "power2.out" });
+      gsap.to(still, { opacity: 1, duration: 0.5, ease: "power2.out" });
+      gsap.to(video, { opacity: 0, duration: 0.5, ease: "power2.out" });
       window.dispatchEvent(new CustomEvent("aura:hero-media-done"));
     };
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    // Portrait asset fills mobile hero edge-to-edge — no letterbox video crop.
-    if (reduced || isMobile) {
+    if (reduced) {
       still.style.opacity = "1";
       video.style.opacity = "0";
       finish();
@@ -61,11 +59,29 @@ export function HeroMedia({
 
     still.style.opacity = "0";
     video.style.opacity = "1";
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
 
-    video.addEventListener("ended", finish);
-    void video.play().catch(() => finish());
+    const onEnded = () => finish();
+    video.addEventListener("ended", onEnded);
 
-    return () => video.removeEventListener("ended", finish);
+    const tryPlay = () => {
+      void video.play().catch(() => finish());
+    };
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+      video.load();
+    }
+
+    return () => {
+      video.removeEventListener("ended", onEnded);
+      video.removeEventListener("loadeddata", tryPlay);
+    };
   }, [isMobile, poster]);
 
   return (
@@ -78,16 +94,16 @@ export function HeroMedia({
         height={isMobile ? 1024 : 1440}
         fetchPriority="high"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-[center_22%] opacity-0 md:object-center"
+        className="absolute inset-0 z-[1] h-full w-full object-cover object-[center_22%] opacity-0 md:object-center"
       />
       <video
         ref={videoRef}
-        className="absolute inset-0 hidden h-full w-full object-cover object-center md:block"
+        className="absolute inset-0 z-0 h-full w-full scale-105 object-cover object-[center_28%] md:scale-100 md:object-center"
         src={videoSrc}
-        poster={stillSrc}
+        poster={poster}
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         controls={false}
         disablePictureInPicture
         aria-hidden
