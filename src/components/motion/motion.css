@@ -1,0 +1,76 @@
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-motion-pending] {
+    opacity: 0;
+    animation: mk-failsafe 0.4s ease 3s forwards;
+  }
+}
+
+@keyframes mk-failsafe {
+  to {
+    opacity: 1;
+  }
+}
+
+.mk-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.mk-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: mk-marquee var(--mk-duration, 30s) linear infinite;
+}
+
+.mk-marquee:dir(rtl) .mk-marquee__track {
+  animation-name: mk-marquee-rtl;
+}
+
+.mk-marquee[data-reverse] .mk-marquee__track {
+  animation-direction: reverse;
+}
+
+.mk-marquee[data-pause-on-hover]:hover .mk-marquee__track {
+  animation-play-state: paused;
+}
+
+.mk-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--mk-gap, 3rem);
+  padding-inline-end: var(--mk-gap, 3rem);
+}
+
+@keyframes mk-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes mk-marquee-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-marquee__track {
+    animation: none;
+  }
+  .mk-marquee {
+    overflow-x: auto;
+  }
+}
+
+.mk-split-mask {
+  display: block;
+  overflow: hidden;
+  padding-block-end: 0.12em;
+  margin-block-end: -0.12em;
+}
+
+.mk-split-inner {
+  display: block;
+  will-change: transform;
+}

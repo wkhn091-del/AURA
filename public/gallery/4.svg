@@ -1,0 +1,5 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#000"/>
+  <rect x="200" y="150" width="1200" height="700" rx="32" fill="#1C1C1E" stroke="rgba(255,255,255,0.1)"/>
+  <text x="800" y="520" fill="#86868B" font-family="system-ui" font-size="36" text-anchor="middle">Gallery 4 · Simulation</text>
+</svg>

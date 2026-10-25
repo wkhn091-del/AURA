@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#000"/>
+  <ellipse cx="960" cy="540" rx="280" ry="320" fill="#1C1C1E" stroke="#86868B" stroke-width="2"/>
+  <ellipse cx="960" cy="540" rx="120" ry="140" fill="#0a0a0a" stroke="#86868B" stroke-width="1"/>
+  <text x="960" y="980" fill="#86868B" font-family="system-ui" font-size="28" text-anchor="middle">AURA PRO · Simulation</text>
+</svg>
