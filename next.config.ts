@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Hide Next.js "N" badge — it sits on top of the WhatsApp FAB in dev.
+  devIndicators: false,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   experimental: {

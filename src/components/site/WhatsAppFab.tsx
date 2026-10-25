@@ -14,7 +14,7 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-[max(1rem,env(safe-area-inset-left))] z-[90] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_32px_rgba(37,211,102,0.45)] transition-transform duration-300 hover:scale-105 md:bottom-8 md:left-8 md:h-14 md:w-14"
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[90] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_32px_rgba(37,211,102,0.45)] transition-transform duration-300 hover:scale-105 md:bottom-8 md:left-8 md:right-auto md:h-14 md:w-14"
     >
       <svg
         viewBox="0 0 24 24"

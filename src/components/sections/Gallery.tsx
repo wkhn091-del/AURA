@@ -29,23 +29,24 @@ export function Gallery({ product }: { product: Product }) {
           Street, mall, park — same quiet, every place you move.
         </p>
 
-        <ul className="mt-10 space-y-5">
+        <ul className="mt-10 space-y-6">
           {slides.map((item, i) => (
             <li key={item.src}>
-              <article className="aura-gallery-panel relative aspect-[4/5] overflow-hidden rounded-[1.5rem] border border-white/12">
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                  loading="lazy"
-                  draggable={false}
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
+              <article className="aura-gallery-panel overflow-hidden rounded-2xl border border-white/12 bg-black">
+                <div className="relative mx-auto w-[92%] py-3">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="block h-auto w-full rounded-xl object-contain"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </div>
+                <div className="border-t border-white/10 px-4 py-3.5">
                   <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
                     Frame 0{i + 1}
                   </p>
-                  <p className="mt-1.5 text-sm font-medium text-white">{item.alt}</p>
+                  <p className="mt-1 text-sm font-medium text-white">{item.alt}</p>
                 </div>
               </article>
             </li>
