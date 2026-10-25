@@ -40,7 +40,7 @@ export function HeroCopy() {
     };
 
     window.addEventListener("aura:hero-media-done", play);
-    const t = window.setTimeout(play, 12000);
+    const t = window.setTimeout(play, 2500);
     return () => {
       window.removeEventListener("aura:hero-media-done", play);
       window.clearTimeout(t);
@@ -50,40 +50,40 @@ export function HeroCopy() {
   return (
     <div
       ref={rootRef}
-      className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-16 text-center md:pb-20"
+      className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-center md:px-6 md:pb-20"
     >
       <p
         data-hero-reveal
-        className="mb-4 font-mono text-[10px] uppercase tracking-[0.35em] text-white/70 opacity-0 md:text-[11px]"
+        className="mb-3 font-mono text-[10px] uppercase tracking-[0.35em] text-white/70 opacity-0 md:mb-4 md:text-[11px]"
       >
         Aura Pro · Pre-order
       </p>
 
       <h1
         data-hero-reveal
-        className="aura-metallic max-w-3xl text-[clamp(2.6rem,6.2vw,4.75rem)] font-bold leading-[1.02] tracking-[-0.035em] opacity-0"
+        className="aura-metallic max-w-3xl text-[clamp(2.15rem,8.5vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.035em] opacity-0"
       >
         {copy.heroH1}
       </h1>
 
       <p
         data-hero-reveal
-        className="mt-5 max-w-lg text-[clamp(0.95rem,1.35vw,1.125rem)] leading-relaxed text-white/70 opacity-0"
+        className="mt-3 max-w-lg text-[0.95rem] leading-relaxed text-white/70 opacity-0 md:mt-5 md:text-[clamp(0.95rem,1.35vw,1.125rem)]"
       >
         {copy.heroH2}
       </p>
 
-      <div data-hero-reveal className="mt-9 flex flex-col items-center gap-3 opacity-0">
+      <div data-hero-reveal className="mt-6 flex w-full flex-col items-center gap-3 opacity-0 md:mt-9">
         <Magnetic strength={0.35}>
           <a
             href="#preorder"
             data-cursor="hover"
-            className="aura-btn-live inline-flex min-h-12 w-full max-w-[20rem] items-center justify-center rounded-full bg-white px-10 py-4 text-base font-bold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--accent)]"
+            className="aura-btn-live inline-flex min-h-12 w-full max-w-[20rem] items-center justify-center rounded-full bg-white px-10 py-3.5 text-base font-bold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--accent)] md:py-4"
           >
             {copy.heroCta}
           </a>
         </Magnetic>
-        <p className="max-w-md text-xs leading-relaxed text-white/45 md:text-[13px]">
+        <p className="max-w-md text-[11px] leading-relaxed text-white/45 md:text-[13px]">
           {copy.heroReassurance}
         </p>
       </div>
@@ -92,7 +92,7 @@ export function HeroCopy() {
         href="#features"
         data-hero-reveal
         data-cursor="hover"
-        className="aura-scroll-cue mt-10 flex flex-col items-center gap-2 opacity-0"
+        className="aura-scroll-cue mt-6 hidden flex-col items-center gap-2 opacity-0 md:mt-10 md:flex"
         aria-label="Scroll to tech"
       >
         <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/40">

@@ -193,6 +193,44 @@ body {
   }
 }
 
+/* E1-11 scroll-fill headline — default fully filled so ST never blanks copy */
+.aura-text-fill {
+  color: transparent;
+  background-image: linear-gradient(90deg, #f5f5f7 0%, #f5f5f7 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+}
+
+.aura-gallery-panel {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 40px 80px -30px rgba(0, 0, 0, 0.85);
+  transform-origin: center center;
+}
+
+.aura-stamp__spin {
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: aura-stamp-spin 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes aura-stamp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-stamp__spin {
+    animation: none;
+  }
+}
+
 /* Metallic headline (E1-20) */
 .aura-metallic {
   background: linear-gradient(
@@ -217,6 +255,80 @@ body {
   100% {
     background-position: -100% 50%;
   }
+}
+
+/* Luxury feature panels — asymmetric titanium cut */
+.aura-luxe-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.07) 0%, transparent 42%),
+    linear-gradient(185deg, #1a2740 0%, #101826 48%, #0c121e 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 36px 70px -28px rgba(0, 0, 0, 0.85);
+  transition:
+    box-shadow 0.55s var(--ease-premium),
+    transform 0.55s var(--ease-premium);
+}
+
+@media (min-width: 768px) {
+  .aura-luxe-card {
+    border-radius: 2.75rem 0.85rem 2.75rem 0.85rem;
+  }
+}
+
+.aura-luxe-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(0, 122, 255, 0.35) 28%,
+    rgba(255, 255, 255, 0.05) 55%,
+    rgba(134, 134, 139, 0.25) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.aura-luxe-card__sheen {
+  position: absolute;
+  inset: -40% -20%;
+  background: radial-gradient(
+    ellipse at 30% 0%,
+    rgba(255, 255, 255, 0.14) 0%,
+    transparent 55%
+  );
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.5s var(--ease-premium);
+}
+
+.aura-luxe-card:hover {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 0 0 1px rgba(110, 182, 255, 0.22),
+    0 40px 90px -24px rgba(0, 80, 180, 0.35),
+    0 36px 70px -28px rgba(0, 0, 0, 0.85);
+}
+
+.aura-luxe-card:hover .aura-luxe-card__sheen {
+  opacity: 1;
 }
 
 /* Glow frame cards (E1-48) */

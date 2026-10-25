@@ -48,7 +48,6 @@ export function SplitReveal({
       const el = ref.current;
       const inner = innerRef.current;
       if (!el || !inner) return;
-      el.removeAttribute("data-motion-pending");
       if (prefersReducedMotion()) {
         gsap.set(inner, { yPercent: 0 });
         return;
@@ -90,7 +89,6 @@ export function SplitReveal({
       id={id}
       className={className}
       style={style}
-      data-motion-pending=""
     >
       <span className="mk-split-mask">
         <span ref={innerRef} className="mk-split-inner">

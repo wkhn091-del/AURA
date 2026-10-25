@@ -74,3 +74,21 @@
   display: block;
   will-change: transform;
 }
+
+.mk-hscroll {
+  overflow: hidden;
+}
+
+.mk-hscroll__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  gap: var(--mk-gap, 2rem);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-hscroll {
+    overflow-x: auto;
+  }
+}

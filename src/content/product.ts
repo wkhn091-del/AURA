@@ -12,7 +12,10 @@ export type Product = {
   preorderShipNote: string;
   isSimulationImagery: boolean;
   heroPosterSrc: string;
+  heroPosterMobileSrc: string;
   lifestyleSrc: string;
+  colorLineupSrc: string;
+  colorSeriesVideoSrc: string;
   gallery: { src: string; alt: string }[];
   sequenceDesktop: { basePath: string; frameCount: number; pad: number };
   sequenceMobile: { basePath: string; frameCount: number; pad: number };
@@ -29,14 +32,24 @@ export const product: Product = {
     "Pre-order · Ships within 30 business days after production begins shipping",
   isSimulationImagery: false,
   heroPosterSrc: "/hero/end-frame.jpg",
-  lifestyleSrc: "/lifestyle/city-day.png",
+  heroPosterMobileSrc: "/hero/end-frame-portrait.png",
+  lifestyleSrc: "/lifestyle/city-street.png",
+  colorLineupSrc: "/lifestyle/color-lineup.png",
+  colorSeriesVideoSrc: "/video/aura-color-series.mp4",
   gallery: [
-    { src: "/lifestyle/city-day.png", alt: "Aura Pro in the city — daylight" },
-    { src: "/lifestyle/city-golden.png", alt: "Aura Pro in the city — golden hour" },
-    { src: "/lifestyle/city-transit.png", alt: "Aura Pro at transit — urban focus" },
-    { src: "/lifestyle/color-lineup.png", alt: "Aura Pro color series lineup" },
+    {
+      src: "/lifestyle/city-street.png",
+      alt: "Aura Pro on a crowded city street",
+    },
+    {
+      src: "/lifestyle/mall-crew.png",
+      alt: "Friends wearing Aura Pro in the mall",
+    },
+    {
+      src: "/lifestyle/park-focus.jpg",
+      alt: "Aura Pro in the park — focus mode",
+    },
   ],
-  // Scroll image-sequence disabled for Hero (quality / premium). Kept for optional later sections.
   sequenceDesktop: {
     basePath: "/sequence/desktop/frame_",
     frameCount: 0,
@@ -77,6 +90,10 @@ export const copy = {
   lifestyleBody:
     "Adaptive ANC reads the room — traffic, trains, open offices — and reshapes the quiet around you. Titanium drivers keep bass deep and midrange clean. One charge: up to 40 hours of playback.",
   lifestyleCta: "See the tech",
+  colorsEyebrow: "Color series",
+  colorsH2: "Your sound. Your color.",
+  colorsBody:
+    "Elevate your everyday with the all-new color series. Launch SKU is Titanium Black — companion finishes preview the line.",
   galleryH2: "Every angle. Same instrument.",
   checkoutH2: "Own the quiet.",
   priceLine: "$349 · Free worldwide shipping",

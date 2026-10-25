@@ -52,20 +52,18 @@ export function Lifestyle({ product }: { product: Product }) {
   return (
     <section
       ref={sectionRef}
-      className="section-panel relative overflow-hidden px-6 py-28 md:px-12 lg:px-20"
+      className="relative overflow-hidden bg-transparent px-5 py-20 md:px-12 md:py-28 lg:px-20"
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-20">
-        <div ref={imageRef} className="relative opacity-0">
-          <div className="aura-glow-card relative overflow-hidden rounded-[1.75rem] p-0">
-            <div className="overflow-hidden">
-              <Parallax image speed={0.12}>
-                <img
-                  src={product.lifestyleSrc}
-                  alt="Aura Pro in a real-world setting"
-                  className="h-auto w-full object-cover"
-                />
-              </Parallax>
-            </div>
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-20">
+        <div ref={imageRef} className="relative">
+          <div className="aura-glow-card relative overflow-hidden rounded-[1.5rem] p-0 md:rounded-[1.75rem]">
+            <Parallax image speed={0.12}>
+              <img
+                src={product.lifestyleSrc}
+                alt="Aura Pro in a real-world setting"
+                className="block h-auto w-full object-cover object-center"
+              />
+            </Parallax>
             {product.isSimulationImagery ? (
               <span className="absolute left-4 top-4 z-10 rounded-full border border-white/15 bg-black/50 px-3 py-1 text-xs text-[#86868B] backdrop-blur-md">
                 Simulation
@@ -76,23 +74,23 @@ export function Lifestyle({ product }: { product: Product }) {
         <div ref={textRef} className="flex flex-col gap-6">
           <p
             data-reveal
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--accent)] opacity-0"
+            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--accent)]"
           >
             On the street
           </p>
           <h2
             data-reveal
-            className="text-4xl font-bold tracking-[-0.03em] text-white opacity-0 md:text-5xl"
+            className="text-[clamp(1.85rem,7vw,3rem)] font-bold tracking-[-0.03em] text-white md:text-5xl"
           >
             {copy.lifestyleH2}
           </h2>
           <p
             data-reveal
-            className="max-w-prose text-base leading-relaxed text-[#A1A1A6] opacity-0 md:text-lg"
+            className="max-w-prose text-base leading-relaxed text-[#A1A1A6] md:text-lg"
           >
             {copy.lifestyleBody}
           </p>
-          <div data-reveal className="opacity-0">
+          <div data-reveal>
             <Magnetic strength={0.25}>
               <a
                 href="#features"

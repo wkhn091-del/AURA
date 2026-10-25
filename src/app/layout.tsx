@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@/components/site/Analytics";
 import { FloatingCta } from "@/components/site/FloatingCta";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
   ),
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover" as const,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,6 +51,7 @@ export default function RootLayout({
           <CustomCursor />
           <SiteHeader />
           <FloatingCta />
+          <WhatsAppFab />
           {children}
           <Analytics />
         </MotionProvider>

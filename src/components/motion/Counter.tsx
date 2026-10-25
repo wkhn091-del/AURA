@@ -39,7 +39,6 @@ export function Counter({
     () => {
       const el = ref.current;
       if (!el) return;
-      el.removeAttribute("data-motion-pending");
       if (prefersReducedMotion()) return;
 
       const state = { value: from };
@@ -65,7 +64,6 @@ export function Counter({
       ref={ref}
       className={className}
       style={{ fontVariantNumeric: "tabular-nums", ...style }}
-      data-motion-pending=""
     >
       {format(to)}
     </span>

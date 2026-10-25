@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site, copy } from "@/content/product";
+import { copy } from "@/content/product";
 import { Magnetic } from "@/components/motion";
 import { easings } from "@/components/motion/config";
+import { AuraLogo } from "@/components/site/AuraLogo";
 
 const nav = [
   { href: "#features", label: "Tech" },
@@ -35,12 +36,8 @@ export function SiteHeader() {
       <div className="px-3 pt-3 md:px-6 md:pt-4">
         <div className="aura-header__glass mx-auto flex h-12 max-w-5xl items-center justify-between gap-3 px-3 md:h-14 md:px-4">
           <Magnetic strength={0.18}>
-            <a
-              href="/"
-              className="shrink-0 px-2 font-sans text-[0.9rem] font-semibold tracking-[-0.07em] text-white md:text-[1rem]"
-              aria-label={`${site.brandName} home`}
-            >
-              {site.wordmark}
+            <a href="/" className="shrink-0 px-1.5" aria-label="Aura Audio home">
+              <AuraLogo />
             </a>
           </Magnetic>
 

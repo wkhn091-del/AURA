@@ -87,7 +87,7 @@ export function Reveal({
   );
 
   return (
-    <Tag ref={ref} className={className} style={style} data-motion-pending="">
+    <Tag ref={ref} className={className} style={style}>
       {children}
     </Tag>
   );

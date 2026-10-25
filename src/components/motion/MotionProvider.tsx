@@ -56,6 +56,7 @@ export function MotionProvider({
     }),
     [preset, overridesKey],
   );
+  // Soft Lenis only — no scrollerProxy (it was blanking pinned/opacity sections)
   const smoothEnabled = smooth ?? settings.lerp < 1;
 
   useEffect(() => {

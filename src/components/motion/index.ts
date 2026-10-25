@@ -9,6 +9,8 @@ export { Parallax } from "./Parallax";
 export { Counter } from "./Counter";
 export { Magnetic } from "./Magnetic";
 export { Marquee } from "./Marquee";
+export { HorizontalScroll } from "./HorizontalScroll";
+export { TextFill } from "./TextFill";
 
 export {
   gsap,
