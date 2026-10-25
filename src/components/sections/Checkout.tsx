@@ -10,7 +10,6 @@ import { createCheckoutSession } from "@/app/actions/checkout";
 import { joinWaitlist } from "@/app/actions/waitlist";
 import { Magnetic } from "@/components/motion";
 import { easings } from "@/components/motion/config";
-import { Stamp } from "@/components/ui/Stamp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,7 +88,6 @@ export function Checkout({ product }: { product: Product }) {
       </div>
 
       <div className="relative z-[1] mx-auto flex max-w-4xl flex-col items-center text-center">
-        <Stamp className="mb-6 h-24 w-24 opacity-95 md:mb-8 md:h-36 md:w-36" />
         <div data-checkout-reveal className="mb-5 md:mb-6">
           <h2 className="text-[clamp(2.4rem,10vw,4.5rem)] font-bold tracking-[-0.03em] text-white drop-shadow-[0_6px_28px_rgba(0,0,0,0.65)] md:text-7xl">
             {copy.checkoutH2}
